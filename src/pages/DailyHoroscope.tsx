@@ -31,20 +31,87 @@ export default function DailyHoroscope() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Zodiac Signs Grid */}
           {[
-            "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
-            "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
-          ].map((sign) => (
-            <Link to={`/zodiac/${sign.toLowerCase()}`} key={sign} className="group">
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all text-center">
-                <h3 className="font-playfair text-xl font-bold text-primary group-hover:text-secondary mb-2">
-                  {sign}
-                </h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  {`March 21 - April 19`}
-                </p>
-                <Button variant="outline" className="group-hover:bg-primary group-hover:text-white">
-                  Read Horoscope
-                </Button>
+            {
+              sign: "Aries",
+              dates: "March 21 - April 19",
+              image: "https://images.unsplash.com/photo-1618477202872-89cec6f8d62e"
+            },
+            {
+              sign: "Taurus",
+              dates: "April 20 - May 20",
+              image: "https://images.unsplash.com/photo-1618477247222-acbdb0e159b3"
+            },
+            {
+              sign: "Gemini",
+              dates: "May 21 - June 20",
+              image: "https://images.unsplash.com/photo-1618477388954-7852f32655ec"
+            },
+            {
+              sign: "Cancer",
+              dates: "June 21 - July 22",
+              image: "https://images.unsplash.com/photo-1527435205980-449ff2163e41"
+            },
+            {
+              sign: "Leo",
+              dates: "July 23 - August 22",
+              image: "https://images.unsplash.com/photo-1618477386014-1e7e2fa9e14d"
+            },
+            {
+              sign: "Virgo",
+              dates: "August 23 - September 22",
+              image: "https://images.unsplash.com/photo-1618477392323-c84dd24485b6"
+            },
+            {
+              sign: "Libra",
+              dates: "September 23 - October 22",
+              image: "https://images.unsplash.com/photo-1618477274728-f3c3fb479483"
+            },
+            {
+              sign: "Scorpio",
+              dates: "October 23 - November 21",
+              image: "https://images.unsplash.com/photo-1618477252522-165f7056ed43"
+            },
+            {
+              sign: "Sagittarius",
+              dates: "November 22 - December 21",
+              image: "https://images.unsplash.com/photo-1618477319548-1ff4e74b1f5c"
+            },
+            {
+              sign: "Capricorn",
+              dates: "December 22 - January 19",
+              image: "https://images.unsplash.com/photo-1618477247616-540883c3e6f4"
+            },
+            {
+              sign: "Aquarius",
+              dates: "January 20 - February 18",
+              image: "https://images.unsplash.com/photo-1618477371303-b79a0f8d3d3c"
+            },
+            {
+              sign: "Pisces",
+              dates: "February 19 - March 20",
+              image: "https://images.unsplash.com/photo-1618477320670-25df3bf3a560"
+            }
+          ].map((zodiac) => (
+            <Link to={`/zodiac/${zodiac.sign.toLowerCase()}`} key={zodiac.sign} className="group">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all">
+                <div className="h-48 relative">
+                  <Image 
+                    src={zodiac.image}
+                    alt={`${zodiac.sign} zodiac sign`}
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6 text-center">
+                  <h3 className="font-playfair text-xl font-bold text-primary group-hover:text-secondary mb-2">
+                    {zodiac.sign}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {zodiac.dates}
+                  </p>
+                  <Button variant="outline" className="group-hover:bg-primary group-hover:text-white">
+                    Read Horoscope
+                  </Button>
+                </div>
               </div>
             </Link>
           ))}
