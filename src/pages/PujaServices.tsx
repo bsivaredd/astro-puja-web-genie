@@ -34,19 +34,19 @@ export default function PujaServices() {
             {
               title: "Grah Shanti Puja",
               description: "Planetary peace ritual to reduce negative influences",
-              price: "$149",
+              price: "₹11,999",
               image: "https://images.unsplash.com/photo-1585506942812-e72b29cef752"
             },
             {
               title: "Lakshmi Puja",
               description: "Ritual to attract prosperity and wealth",
-              price: "$129",
+              price: "₹9,499",
               image: "https://images.unsplash.com/photo-1626068297851-8d0d37ecea41"
             },
             {
               title: "Navgraha Puja",
               description: "Balance the influences of all nine planets",
-              price: "$199",
+              price: "₹15,999",
               image: "https://images.unsplash.com/photo-1567591370504-fbd3bd1ad08c"
             },
           ].map((puja, index) => (
