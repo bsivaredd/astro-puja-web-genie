@@ -3,6 +3,7 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { Calendar, Compass, Moon, Star } from "lucide-react";
 import { Image } from "@/components/Image";
+import { Link } from "react-router-dom";
 
 export default function Index() {
   return (
@@ -32,6 +33,38 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Quick Links Section */}
+      <section className="py-12 bg-gradient-to-r from-purple-50 to-pink-50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <Link to="/daily-horoscope" className="group">
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+                <h3 className="font-playfair text-lg font-semibold mb-2 text-primary">Daily Horoscope</h3>
+                <p className="text-sm text-gray-600">Get your daily astrological predictions</p>
+              </div>
+            </Link>
+            <Link to="/puja-services" className="group">
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+                <h3 className="font-playfair text-lg font-semibold mb-2 text-primary">Online Puja Services</h3>
+                <p className="text-sm text-gray-600">Book sacred rituals and ceremonies</p>
+              </div>
+            </Link>
+            <Link to="/astrology-consultation" className="group">
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+                <h3 className="font-playfair text-lg font-semibold mb-2 text-primary">Astrology Consultation</h3>
+                <p className="text-sm text-gray-600">Connect with expert astrologers</p>
+              </div>
+            </Link>
+            <Link to="/gemstones" className="group">
+              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+                <h3 className="font-playfair text-lg font-semibold mb-2 text-primary">Sacred Gemstones</h3>
+                <p className="text-sm text-gray-600">Find your spiritual gemstone</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -56,7 +89,28 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Features Section with Background Image */}
+      {/* Zodiac Signs Section */}
+      <section className="py-16 bg-gradient-to-b from-purple-50 to-transparent">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-playfair font-bold text-center mb-12">Explore Your Zodiac Sign</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {[
+              "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
+              "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+            ].map((sign) => (
+              <Link to={`/zodiac/${sign.toLowerCase()}`} key={sign} className="group">
+                <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all text-center">
+                  <h3 className="font-playfair font-semibold text-primary group-hover:text-secondary">
+                    {sign}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
       <section className="relative bg-muted py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -102,7 +156,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Testimonials Section with Side Image */}
+      {/* Testimonials Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-8">
@@ -138,7 +192,80 @@ export default function Index() {
         </div>
       </section>
 
-      {/* CTA Section with Background */}
+      {/* Newsletter Section */}
+      <section className="py-16 bg-gradient-to-r from-purple-100 to-pink-100">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-playfair font-bold mb-6">Stay Connected with the Cosmos</h2>
+          <p className="text-lg mb-8 max-w-2xl mx-auto">
+            Subscribe to receive daily horoscopes, spiritual insights, and exclusive offers.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <Button className="bg-primary hover:bg-primary/90">
+              Subscribe Now
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Special Services Grid */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Link to="/vedic-astrology" className="group">
+              <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+                <Image
+                  src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb"
+                  alt="Vedic Astrology"
+                  className="transform group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="font-playfair text-xl font-bold mb-2">Vedic Astrology</h3>
+                    <p className="text-sm opacity-90">Ancient wisdom for modern life</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link to="/numerology" className="group">
+              <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+                <Image
+                  src="https://images.unsplash.com/photo-1469474968028-56623f02e42e"
+                  alt="Numerology"
+                  className="transform group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="font-playfair text-xl font-bold mb-2">Numerology</h3>
+                    <p className="text-sm opacity-90">Discover your life path number</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link to="/vastu" className="group">
+              <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+                <Image
+                  src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05"
+                  alt="Vastu"
+                  className="transform group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <div className="text-white">
+                    <h3 className="font-playfair text-xl font-bold mb-2">Vastu Shastra</h3>
+                    <p className="text-sm opacity-90">Harmonize your living spaces</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
       <section className="relative hero-gradient py-20 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
