@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { getContentValue } from '../../utils/contentService';
 
@@ -71,26 +70,20 @@ export const EditableContext = React.createContext<EditableContextType>({
   openEditDialog: () => {}
 });
 
-// Hook for accessing the editable context
 export const useEditable = () => React.useContext(EditableContext);
 
-// Provider component for the editable context
 interface EditableProviderProps {
   children: React.ReactNode;
 }
 
 export const EditableProvider: React.FC<EditableProviderProps> = ({ children }) => {
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [editLocation, setEditLocation] = useState<string | null>(null);
-  const [editType, setEditType] = useState<'text' | 'image' | null>(null);
+  const [isEditMode, setIsEditMode] = React.useState(false);
 
   const toggleEditMode = () => {
     setIsEditMode(prev => !prev);
   };
 
   const openEditDialog = (location: string, type: 'text' | 'image') => {
-    setEditLocation(location);
-    setEditType(type);
     // This would trigger a modal or dialog to edit the content
     console.log(`Editing ${type} at location: ${location}`);
   };
