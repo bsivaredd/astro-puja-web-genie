@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Notifications from '../../components/common/Notifications';
 import ContentEditor from '../../components/admin/ContentEditor';
-import { LineChart, BarChart, PieChart, Calendar, Users, ShoppingBag, MessageSquare, Settings, LogOut, Bell, Search, Menu, X, ChevronDown, ChevronUp, DollarSign, TrendingUp, Package, Eye, Edit, Plus, Image, Trash2 } from 'lucide-react';
+import { LineChart, Calendar, Users, ShoppingBag, MessageSquare, Settings, LogOut, Bell, Search, Menu, X, DollarSign, TrendingUp, Package, Eye, Edit, Plus, Image, Trash2 } from 'lucide-react';
 
 // Sample orders data with extended information
 const orders = [
@@ -62,19 +62,6 @@ const AdminDashboard: React.FC = () => {
     e.preventDefault();
     setEditingService(null);
     setIsAddingService(false);
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-100 text-green-800';
-      case 'processing':
-        return 'bg-blue-100 text-blue-800';
-      case 'cancelled':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
   };
 
   return (
