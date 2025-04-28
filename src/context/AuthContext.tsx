@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 interface User {
@@ -26,7 +25,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check for stored auth state on mount
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
@@ -36,12 +34,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (_email: string, _password: string): Promise<boolean> => {
     try {
       const mockUser = {
         id: '1',
         name: 'Test User',
-        email,
+        email: _email,
         role: 'user' as const
       };
       
@@ -56,9 +54,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const adminLogin = async (email: string, password: string): Promise<boolean> => {
+  const adminLogin = async (email: string, _password: string): Promise<boolean> => {
     try {
-      if (email === 'sudhagarambur@gmail.com' && password === 'Sudha@2025') {
+      if (email === 'sudhagarambur@gmail.com' && _password === 'Sudha@2025') {
         const mockAdmin = {
           id: 'admin1',
           name: 'Sudhagar Ambur',
