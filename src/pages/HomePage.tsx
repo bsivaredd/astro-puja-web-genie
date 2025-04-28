@@ -6,7 +6,6 @@ import Testimonials from '../components/home/Testimonials';
 import BlogPosts from '../components/home/BlogPosts';
 import Newsletter from '../components/home/Newsletter';
 import Notifications from '../components/common/Notifications';
-import { EditableText } from '../components/common/EditableContent';
 
 const HomePage: React.FC = () => {
   useEffect(() => {

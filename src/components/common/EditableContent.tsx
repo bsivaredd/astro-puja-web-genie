@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { getContentValue } from '../../utils/contentService';
 
 interface EditableTextProps {
@@ -7,17 +7,27 @@ interface EditableTextProps {
   defaultValue: string;
   as?: keyof JSX.IntrinsicElements;
   className?: string;
+  onClick?: () => void;
 }
 
 export const EditableText: React.FC<EditableTextProps> = ({ 
   location, 
   defaultValue,
   as: Component = 'div',
-  className = ''
+  className = '',
+  onClick
 }) => {
   const content = getContentValue(location, defaultValue);
   
-  return <Component className={className}>{content}</Component>;
+  return (
+    <Component 
+      className={`${className} ${onClick ? 'cursor-pointer' : ''}`}
+      onClick={onClick}
+      data-editable-location={location}
+    >
+      {content}
+    </Component>
+  );
 };
 
 interface EditableImageProps {
@@ -25,15 +35,69 @@ interface EditableImageProps {
   defaultSrc: string;
   alt: string;
   className?: string;
+  onClick?: () => void;
 }
 
 export const EditableImage: React.FC<EditableImageProps> = ({
   location,
   defaultSrc,
   alt,
-  className = ''
+  className = '',
+  onClick
 }) => {
   const src = getContentValue(location, defaultSrc);
   
-  return <img src={src} alt={alt} className={className} />;
+  return (
+    <img 
+      src={src} 
+      alt={alt} 
+      className={`${className} ${onClick ? 'cursor-pointer' : ''}`} 
+      onClick={onClick}
+      data-editable-location={location}
+    />
+  );
+};
+
+// Context to manage editable content state
+interface EditableContextType {
+  isEditMode: boolean;
+  toggleEditMode: () => void;
+  openEditDialog: (location: string, type: 'text' | 'image') => void;
+}
+
+export const EditableContext = React.createContext<EditableContextType>({
+  isEditMode: false,
+  toggleEditMode: () => {},
+  openEditDialog: () => {}
+});
+
+// Hook for accessing the editable context
+export const useEditable = () => React.useContext(EditableContext);
+
+// Provider component for the editable context
+interface EditableProviderProps {
+  children: React.ReactNode;
+}
+
+export const EditableProvider: React.FC<EditableProviderProps> = ({ children }) => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editLocation, setEditLocation] = useState<string | null>(null);
+  const [editType, setEditType] = useState<'text' | 'image' | null>(null);
+
+  const toggleEditMode = () => {
+    setIsEditMode(prev => !prev);
+  };
+
+  const openEditDialog = (location: string, type: 'text' | 'image') => {
+    setEditLocation(location);
+    setEditType(type);
+    // This would trigger a modal or dialog to edit the content
+    console.log(`Editing ${type} at location: ${location}`);
+  };
+
+  return (
+    <EditableContext.Provider value={{ isEditMode, toggleEditMode, openEditDialog }}>
+      {children}
+    </EditableContext.Provider>
+  );
 };
