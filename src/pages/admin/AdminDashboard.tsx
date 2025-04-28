@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Notifications from '../../components/common/Notifications';
+import ContentEditor from '../../components/admin/ContentEditor';
 import { LineChart, BarChart, PieChart, Calendar, Users, ShoppingBag, MessageSquare, Settings, LogOut, Bell, Search, Menu, X, ChevronDown, ChevronUp, DollarSign, TrendingUp, Package, Eye, Edit, Plus, Image, Trash2 } from 'lucide-react';
 
 // Sample orders data with extended information
@@ -141,6 +142,7 @@ const AdminDashboard: React.FC = () => {
             <nav className="space-y-1">
               {[
                 { name: 'Dashboard', icon: <LineChart className="h-5 w-5" />, id: 'dashboard' },
+                { name: 'Content Editor', icon: <Edit className="h-5 w-5" />, id: 'content' },
                 { name: 'Orders', icon: <ShoppingBag className="h-5 w-5" />, id: 'orders' },
                 { name: 'Services', icon: <Package className="h-5 w-5" />, id: 'services' },
                 { name: 'Customers', icon: <Users className="h-5 w-5" />, id: 'customers' },
@@ -179,6 +181,10 @@ const AdminDashboard: React.FC = () => {
         </aside>
         
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+          {activeTab === 'content' && (
+            <ContentEditor />
+          )}
+          
           {activeTab === 'services' && (
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="p-6 border-b border-gray-200 flex justify-between items-center">
@@ -415,8 +421,8 @@ const AdminDashboard: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { title: 'Total Revenue', value: '₹2,56,947', icon: <DollarSign className="h-6 w-6 text-green-500" />, change: '+12.5%', trend: 'up', bg: 'bg-gradient-to-br from-green-400 to-green-600' },
-                  { title: 'New Orders', value: '385', icon: <ShoppingBag className="h-6 w-6 text-blue-500" />, change: '+8.2%', trend: 'up', bg: 'bg-gradient-to-br from-blue-400 to-blue-600' },
-                  { title: 'New Customers', value: '127', icon: <Users className="h-6 w-6 text-indigo-500" />, change: '+5.1%', trend: 'up', bg: 'bg-gradient-to-br from-indigo-400 to-indigo-600' },
+                  { title: 'New Orders', value: '385', icon: <ShoppingBag className="h-6 w-5 text-blue-500" />, change: '+8.2%', trend: 'up', bg: 'bg-gradient-to-br from-blue-400 to-blue-600' },
+                  { title: 'New Customers', value: '127', icon: <Users className="h-6 w-5 text-indigo-500" />, change: '+5.1%', trend: 'up', bg: 'bg-gradient-to-br from-indigo-400 to-indigo-600' },
                   { title: 'Page Views', value: '12,567', icon: <Eye className="h-6 w-6 text-purple-500" />, change: '-2.3%', trend: 'down', bg: 'bg-gradient-to-br from-purple-400 to-purple-600' }
                 ].map((stat, index) => (
                   <div key={index} className="bg-white rounded-lg shadow-sm p-6 flex flex-col">
@@ -445,7 +451,7 @@ const AdminDashboard: React.FC = () => {
             </div>
           )}
 
-          {activeTab !== 'dashboard' && activeTab !== 'services' && activeTab !== 'orders' && (
+          {activeTab !== 'dashboard' && activeTab !== 'services' && activeTab !== 'orders' && activeTab !== 'content' && (
             <div className="bg-white rounded-lg shadow-sm p-8 text-center">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Section</h2>
               <p className="text-gray-600">This section is under development.</p>

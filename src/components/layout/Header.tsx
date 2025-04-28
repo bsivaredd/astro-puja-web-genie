@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
@@ -91,6 +92,9 @@ const Header: React.FC = () => {
                   <Link to="/register" className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">
                     Register
                   </Link>
+                  <Link to="/admin/login" className="px-4 py-2 bg-indigo-700 text-white rounded-md hover:bg-indigo-800">
+                    Admin
+                  </Link>
                 </div>
               )}
               
@@ -166,6 +170,9 @@ const Header: React.FC = () => {
                 </Link>
                 <Link to="/register" className="px-4 py-2 text-center bg-purple-600 text-white rounded">
                   Register
+                </Link>
+                <Link to="/admin/login" className="px-4 py-2 text-center bg-indigo-700 text-white rounded">
+                  Admin Login
                 </Link>
               </div>
             )}
